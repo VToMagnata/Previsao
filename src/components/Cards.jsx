@@ -6,8 +6,9 @@ const Cards = ({ dados }) => {
   useEffect(() => {
     if (!dados?.forecast?.forecastday) return;
 
-    const diasFuturos = dados.forecast.forecastday.map((day) => {
-      const date = new Date(day.date);
+    const diasFuturos = dados.forecast.forecastday.slice(1).map((day) => {
+      const [year, month, dayNum] = day.date.split("-");
+      const date = new Date(year, month - 1, dayNum);
       return {
         diaSemana: date.toLocaleDateString("pt-BR", { weekday: "long" }),
         icone: day.day.condition.icon,
@@ -27,11 +28,11 @@ const Cards = ({ dados }) => {
       {forecastData.map((dia, index) => (
         <div
           key={index}
-          className="p-4 rounded shadow-xl flex flex-col justify-center items-center w-[20em] h-[12em]"
+          className="p-4 rounded-xl shadow-xl flex flex-col justify-center items-center w-[20em] h-[12em] bg-white"
         >
-          <h2 className="font-bold">{dia.diaSemana}</h2>
-          <img src={dia.icone} alt="ícone do clima" />
-          <p>
+          <h2 className="font-bold capitalize mb-2">{dia.diaSemana}</h2>
+          <img src={dia.icone} alt="ícone do clima" className="mb-2" />
+          <p className="mb-1">
             Máx: {dia.tempMax}°C | Mín: {dia.tempMin}°C
           </p>
           <p>{dia.condicao}</p>
