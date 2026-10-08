@@ -42,7 +42,7 @@ const App = () => {
   }, []);
 
   return (
-    <main className="w-screen h-screen p-4 flex flex-col items-center justify-center bg-gradient-to-b from-cyan-600 to-sky-400">
+    <main className="w-full h-full sm:h-screen p-4 flex flex-col items-center justify-center bg-gradient-to-b from-cyan-600 to-sky-400 overflow-y-auto">
       <header className="flex items-center justify-center mb-8 w-full">
         <input
           type="text"
